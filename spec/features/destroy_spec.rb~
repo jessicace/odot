@@ -10,8 +10,6 @@ describe "Deleting todo lists" do
       click_link "Destroy"
     end
     expect(page).to_not have_content(todo_list.title)
-
-    # ensure the count of all todo lists equals zero
     expect(TodoList.count).to eq(0)
   end
 end
