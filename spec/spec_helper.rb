@@ -4,6 +4,9 @@ require 'capybara/rspec'
 
 RSpec.configure do |config|
 
+  config.include FactoryGirl::Syntax::Methods
+  config.include AuthenticationHelpers, type: :controller
+  
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
