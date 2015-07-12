@@ -42,4 +42,5 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-email'
 end

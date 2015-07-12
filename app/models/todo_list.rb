@@ -5,4 +5,5 @@ class TodoList < ActiveRecord::Base
   validates :description, length: { minimum: 5 }
 
   has_many :todo_items
+  belongs_to :user
 end
