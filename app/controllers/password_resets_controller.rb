@@ -1,25 +1,22 @@
 class PasswordResetsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
+    user = User.find_by(email: params[:email])
     if user
-      user = User.find_by(email: params[:email])
       user.generate_password_reset_token!
       Notifier.password_reset(user).deliver
+      flash[:success] = "Password reset instructions sent. Please check your email."
       redirect_to login_path
     else
-      flash.now[:error] = "Email not found"
+      flash.now[:error] = "Email not found."
       render action: 'new'
     end
   end
 
   def edit
     @user = User.find_by(password_reset_token: params[:id])
-    if @user
-    else
-      render file: 'public/404.html', status: :not_found
-    end
+    render file: 'public/404.html', status: :not_found unless @user
   end
 
   def update
@@ -29,7 +26,7 @@ class PasswordResetsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to todo_lists_path, success: "Password updated."
     else
-      flash.now[:notice] = "Password reset token not found."
+      flash.now[:error] = "Password reset token not found."
       render action: 'edit'
     end
   end
