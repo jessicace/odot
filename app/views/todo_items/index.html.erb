@@ -1,0 +1,17 @@
+<h1><%= @todo_list.title %></h1>
+<table class="todo_items">
+	<thead>
+		<tr>
+			<th width="25%">Completed?</th>
+      <th width="65%">Content</th>
+      <th width="10%">Functions</th>
+    </tr>
+	</thead>
+	<tbody>
+		<%= render @todo_list.todo_items %>
+	</tbody>
+</table>
+
+<p>
+	<%= link_to "New Todo Item", new_todo_list_todo_item_path %>
+</p>

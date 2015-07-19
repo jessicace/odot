@@ -1,4 +1,0 @@
-class AddUserIdToTodoLists < ActiveRecord::Migration
-  def change
-  end
-end
