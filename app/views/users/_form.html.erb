@@ -11,23 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <fieldgroup>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %><br>
+  </fieldgroup>
+  <fieldgroup>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %><br>
+	</fieldgroup>
+  <fieldgroup>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br>
+  </fieldgroup>
+  <fieldgroup>
+    <%= f.label :password %>
+    <%= f.text_field :password %><br>
+		<%= f.label :password_confirmation %>
+    <%= f.text_field :password_confirmation %><br>
+	</fieldgroup>
+  <%= f.submit %>
 <% end %>
