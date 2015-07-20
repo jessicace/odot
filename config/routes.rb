@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+
   root 'todo_lists#index'
   
   get "/login" => "user_sessions#new", as: :login
