@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UserSessionsController do
+
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
@@ -10,8 +11,7 @@ describe UserSessionsController do
     it "renders the new template" do
       get 'new'
       expect(response).to render_template('new')
-    end
-    
+    end 
   end
 
   describe "POST 'create'" do
@@ -21,6 +21,7 @@ describe UserSessionsController do
                                 email: "jessica@eml.cc",
                                 password: "jessica",
                                 password_confirmation: "jessica") }
+
       it "redirects to the todo list path" do
         post :create, email: "jessica@eml.cc", password: "jessica"
         expect(response).to be_redirect
@@ -42,6 +43,13 @@ describe UserSessionsController do
       it "sets the flash success message" do
         post :create, email: "jessica@eml.cc", password: "jessica"
         expect(flash[:success]).to eq("Thanks for logging in!")
+      end
+
+      it "sets the remember_me_token cookie if chosen" do
+        expect(cookies).to_not have_key('remember_me_token')
+        post :create, email: "jessica@eml.cc", password: "jessica", remember_me: "1"
+        expect(cookies).to have_key('remember_me_token')
+        expect(cookies['remember_me_token']).to_not be_nil
       end
     end
 
@@ -107,6 +115,13 @@ describe UserSessionsController do
       it "resets the session" do
         expect(controller).to receive(:reset_session)
         delete :destroy
+      end
+
+      it "removes the remember_me_token cookie" do
+        cookies['remember_me_token'] = 'remembered'
+        delete :destroy
+        expect(cookies).to_not have_key('remember_me_token')
+        expect(cookies['remember_me_token']).to be_nil
       end
     end
   end
