@@ -5,7 +5,7 @@ describe UserSessionsController do
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "renders the new template" do

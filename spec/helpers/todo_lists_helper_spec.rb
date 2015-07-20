@@ -1,5 +1,5 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe TodoListsHelper, type: :helper do
+RSpec.describe TodoListsHelper do
 
 end
