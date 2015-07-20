@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Deleting todo lists" do
   let(:user) { todo_list.user }

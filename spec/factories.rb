@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :todo_list do
-    title "Todo List"
+    title "Groceries"
     association :user
   end
 end

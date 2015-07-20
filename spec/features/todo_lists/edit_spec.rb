@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Editing todo lists" do
   let(:user) { todo_list.user }
@@ -14,7 +14,7 @@ describe "Editing todo lists" do
     end
 
     fill_in "Title", with: options[:title]
-    click_button "Update Todo List"
+    click_button "Update Todo list"
   end
 
   before do
@@ -37,7 +37,7 @@ describe "Editing todo lists" do
     title = todo_list.title
     todo_list.reload
     expect(todo_list.title).to eq(title)
-    expect(page).to have content("error")
+    expect(page).to have_content("error")
   end
 
   it "displays an error with too short a title" do
