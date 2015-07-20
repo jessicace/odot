@@ -2,7 +2,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :success
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  rescue_from ActiveSupport::MessageVerifier::InvalidSignature, with: :render_error
+  
   private
+  def render_404
+    render file: 'public/404.html', status: :not_found, layout: false
+  end
+
+  def render_error
+    render file: 'public/500.html', status: :internal_server_error, layout: false    
+  end
+
   def logged_in?
     current_user
   end
