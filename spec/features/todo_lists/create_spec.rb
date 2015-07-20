@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe "Creating todo lists" do
   let(:user) { create(:user) }
@@ -8,15 +7,15 @@ describe "Creating todo lists" do
     options[:title] ||= "My Todo List"
    
     visit "/todo_lists"
-    click_link "New Todo List"
-    expect(page).to have_content("New todo_list")
+    click_link "New Todo list"
+    expect(page).to have_content("New Todo List")
 
     fill_in "Title", with: options[:title]
-    click_button "Create Todo List"
+    click_button "Create Todo list"
   end
 
   before do
-    sign_in user, password: "jessica"
+    sign_in(user, password: "jessica")
   end
 
   it "redirects to the todo list index page on success" do

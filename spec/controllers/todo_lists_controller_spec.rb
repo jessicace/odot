@@ -16,8 +16,8 @@ RSpec.describe TodoListsController, type: :controller do
       it "assigns all todo_lists as @todo_lists" do
         todo_list = user.todo_lists.create!(valid_attributes)
         get :index, {}, valid_session
-        assigns(:todo_lists).should eq([todo_list])
-        expect(assigns(:todo_lists)).map(&:user).to eq([user])
+        expect(assigns(:todo_lists)).to eq([todo_list])
+        expect(assigns(:todo_lists).map(&:user)).to eq([user])
       end
 
       it "does not load other user's todo lists" do
@@ -32,7 +32,7 @@ RSpec.describe TodoListsController, type: :controller do
     it "assigns the requested todo_list as @todo_list for the logged in user" do
       todo_list = user.todo_lists.create!(valid_attributes)
       get :show, { id: todo_list.to_param }, valid_session
-      assigns(:todo_list).should eq(todo_list)
+      expect(assigns(:todo_list)).to eq(todo_list)
       expect(assigns(:todo_list).user).to eq(user)
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe TodoListsController, type: :controller do
   describe "GET #new" do
     it "assigns a new todo_list as @todo_list for the logged in user" do
       get :new, {}, valid_session
-      assigns(:todo_list).should be_a_new(TodoList)
+      expect(assigns(:todo_list)).to be_a_new(TodoList)
       expect(assigns(:todo_list).user).to eq(user)
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe TodoListsController, type: :controller do
     it "assigns the requested todo_list as @todo_list" do
       todo_list = user.todo_lists.create!(valid_attributes)
       get :edit, {id: todo_list.to_param}, valid_session
-      assigns(:todo_list).should eq(todo_list)
+      expect(assigns(:todo_list)).to eq(todo_list)
       expect(assigns(:todo_list).user).to eq(user)
     end
   end
@@ -89,15 +89,15 @@ RSpec.describe TodoListsController, type: :controller do
 
     context "with invalid params" do
       it "assigns a newly created but unsaved todo_list as @todo_list" do
-        TodoList.any_instance.stub(:save).and_return(false)
-        post :create, { todo_list: { "title" => "invalid value" } }, valid_session
-        assigns(:todo_list).should be_a_new(TodoList)
+        allow(TodoList).to receive(:save).and_return(false)
+        post :create, { todo_list: { "title" => "" } }, valid_session
+        expect(assigns(:todo_list)).to be_a_new(TodoList)
         expect(assigns(:todo_list).user).to eq(user)
       end
 
       it "re-renders the 'new' template" do
-        TodoList.any_instance.stub(:save).and_return(false)
-        post :create, { :todo_list => { "title" => "invalid value" } }, valid_session
+        allow(TodoList).to receive(:save).and_return(false)        
+        post :create, { :todo_list => { "title" => "" } }, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -113,7 +113,7 @@ RSpec.describe TodoListsController, type: :controller do
       it "assigns the requested todo_list as @todo_list" do
         todo_list = user.todo_lists.create!(valid_attributes)
         put :update, { id: todo_list.to_param, todo_list: valid_attributes}, valid_session
-        assigns(:todo_list).should eq(todo_list)
+        expect(assigns(:todo_list)).to eq(todo_list)
         expect(assigns(:todo_list).user).to eq(user)
       end
 
@@ -127,15 +127,15 @@ RSpec.describe TodoListsController, type: :controller do
     context "with invalid params" do
       it "assigns the todo_list as @todo_list" do
         todo_list = user.todo_lists.create!(valid_attributes)
-        TodoList.any_instance.stub(:save).and_return(false)
-        put :update, { id: todo_list.to_param, todo_list: invalid_attributes}, valid_session
+        allow(TodoList).to receive(:save).and_return(false)
+        put :update, { id: todo_list.to_param, todo_list: { "title" => "" } }, valid_session
         expect(assigns(:todo_list)).to eq(todo_list)
       end
 
       it "re-renders the 'edit' template" do
         todo_list = user.todo_lists.create!(valid_attributes)
-        TodoList.any_instance.stub(:save).and_return(false)
-        put :update, { id: todo_list.to_param, todo_list: { "title" => "invalid value" } }, valid_session
+        allow(TodoList).to receive(:save).and_return(false)
+        put :update, { id: todo_list.to_param, todo_list: { "title" => "" } }, valid_session
         expect(response).to render_template("edit")
       end
     end
