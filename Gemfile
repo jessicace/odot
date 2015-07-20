@@ -9,8 +9,11 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'foundation-rails'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'quiet_assets', group: :development
+
 
 group :development, :test do
   gem 'byebug'
