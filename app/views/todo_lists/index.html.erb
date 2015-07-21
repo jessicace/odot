@@ -1,5 +1,7 @@
 <h2 class="page-title">Listing Todo Lists</h2>
 
-<%= render @todo_lists %>
+<ul class="todo-lists no-bullet">
+	<%= render @todo_lists %>
+</ul>
 
 <%= link_to 'New Todo list', new_todo_list_path %>

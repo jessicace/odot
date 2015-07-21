@@ -1,18 +1,14 @@
-<tr id="<%= dom_id(todo_item) %>">
-  <td>
-    <% if todo_item.completed? %>
-      <%= todo_item.completed_at %>
-    <% else %>
-      <%= link_to "Mark Complete",
-			complete_todo_list_todo_item_path(todo_item),
-			method: :patch %>
-    <% end %>
-  </td>
-  <td><%= todo_item.content %></td>
-  <td>
-    <%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %>
-    <%= link_to "Delete", todo_list_todo_item_path(todo_item),
-		method: :delete,
-		data: { confirm: "Are you sure?" } %>
-  </td>
-</tr>
+<li id="<%= dom_id(todo_item) %>" class="todo-item row">
+	<div class="small-2 medium-1 columns checkmark">
+		<% if todo_item.completed? %>
+			<%= link_to "Mark Incomplete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check checked hide-text" %>
+		<% else %>
+			<%= link_to "Mark Incomplete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check checked hide-text" %>
+		<% end %>
+		
+	</div>
+	<div class="small-10 medium-11 columns truncate todo-content" title="<%= todo_item.content%>">
+		<%= link_to todo_item.content, edit_todo_list_todo_item_path(@todo_list, todo_item) %>
+	</div>
+</li>
+
