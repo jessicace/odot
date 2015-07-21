@@ -1,0 +1,7 @@
+<footer class="row">
+	<nav class="small-12 small-centered medium-8 medium-centred large-5 large-centered columns">
+		<% if logged_in? %>
+			<%= link_to "Settings", edit_user_path(current_user)  %>
+		<% end %>
+	</nav>
+</footer>

@@ -1,4 +1,4 @@
-<li id="<%= dom_id(todo_item) %>" class="todo-item row">
+<li id="<%= dom_id(todo_item) %>" class="todo_item row">
 	<div class="small-2 medium-1 columns checkmark">
 		<% if todo_item.completed? %>
 			<%= link_to "Mark Incomplete", complete_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, class: "icon-check checked hide-text" %>
@@ -7,7 +7,7 @@
 		<% end %>
 		
 	</div>
-	<div class="small-10 medium-11 columns truncate todo-content" title="<%= todo_item.content%>">
+	<div class="small-10 medium-11 columns truncate todo_content" title="<%= todo_item.content%>">
 		<%= link_to todo_item.content, edit_todo_list_todo_item_path(@todo_list, todo_item) %>
 	</div>
 </li>
