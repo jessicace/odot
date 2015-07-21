@@ -1,12 +1,11 @@
-<nav>
-	<h1><%= link_to "Odot", root_path %></h1>
-	<ul>
-		<li><%= link_to "TODO Lists", todo_lists_path %></li>
+<header class="row global-header">
+	<nav class="small-12 small-centered medium-8 medium-centred large-5 large-centered columns">
+		<%= link_to "TODO Lists", todo_lists_path %></li>
 		<% if logged_in? %>
-			<li><%= link_to "Log Out", logout_path, method: :delete %></li>
+			<%= link_to "Log Out", logout_path, method: :delete %></li>
 		<% else %>
-			<li><%= link_to "Log In", new_user_session_path %></li>
-			<li><%= link_to "Sign Up", new_user_path %></li>
+			<%= link_to "Log In", new_user_session_path %>
+			<%= link_to "Sign Up", new_user_path %>
 		<% end %>
-	</ul>
-</nav>
+	</nav>
+</header>
