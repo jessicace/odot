@@ -9,6 +9,7 @@ describe "Deleting todo lists" do
   end
 
   it "is successful when clicking the destroy link" do
+    pending "Adding delete link"
     visit "/todo_lists"
 
     within "#todo_list_#{todo_list.id}" do
