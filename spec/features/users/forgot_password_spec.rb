@@ -18,11 +18,11 @@ describe "Forgotten passwords" do
     fill_in "Email", with: user.email
     click_button "Reset Password"
     open_email(user.email)
-    current_email.click_link "http://"
+    current_email.click_link("http://")
     expect(page).to have_content("Change Your Password")
 
     fill_in "Password", with: "newpassword"
-    fill_in "Password Confirmation", with: "newpassword"
+    fill_in "Password confirmation", with: "newpassword"
     click_button "Change Password"
     expect(page).to have_content("Password updated")
     expect(page.current_path).to eq(todo_lists_path)
