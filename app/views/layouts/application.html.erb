@@ -11,10 +11,10 @@
 <body>
 	<%= render 'layouts/navigation' %>
 	<% flash.each do |type, message| %>
-		<aside class="flash alert-box text-center <%= type %>">
+		<output class="flash alert-box text-center <%= type %>">
 			<%= message %>
 			<a href="#" class="close">&times;</a>
-		</aside>
+		</output>
 	<% end %>
 
 	<section class="row collapse">
